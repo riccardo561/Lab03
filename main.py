@@ -68,13 +68,16 @@ def main():
             else:
                 id_strumento = input("ID strumento: ")
                 cognome_allievo = input("Cognome allievo: ")
-                data = datetime.now().date()
-                try:
-                    prestito = deposito.nuovo_prestito(data, id_strumento, cognome_allievo)
-                    print(f"Prestito andato a buon fine: {prestito}")
+                if cognome_allievo.isdigit():
+                    print('Inserire un cognome valido')
+                else:
+                    data = datetime.now().date()
+                    try:
+                        prestito = deposito.nuovo_prestito(data, id_strumento, cognome_allievo)
+                        print(f"Prestito andato a buon fine: {prestito}")
 
-                except Exception as e:
-                    print(e)
+                    except Exception as e:
+                        print(e)
 
         elif scelta == "6":
             if len(deposito.lista_strumento)==0:
